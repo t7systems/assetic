@@ -23,6 +23,8 @@ class FunctionCallsFormulaLoader extends BasePhpFormulaLoader
         return array(
             'assetic_javascripts(*)' => array('output' => 'js/*.js'),
             'assetic_stylesheets(*)' => array('output' => 'css/*.css'),
+            'auto_assetic_javascripts(*)' => array('output' => 'js/*.js'),
+            'auto_assetic_stylesheets(*)' => array('output' => 'css/*.css'),
             'assetic_image(*)'       => array('output' => 'images/*'),
         );
     }
@@ -40,6 +42,28 @@ function assetic_stylesheets()
 {
     global $_call;
     $_call = func_get_args();
+}
+
+function auto_assetic_javascripts()
+{
+    global $_call;
+    $_call = func_get_args();
+    $_call = array($_call[1], $_call[2], $_call[3]);
+    foreach ($_call[0] AS &$c)
+    {
+      $c = substr($c,1,strlen($c));
+    }
+}
+
+function auto_assetic_stylesheets()
+{
+    global $_call;
+    $_call = func_get_args();
+    $_call = array($_call[1], $_call[2], $_call[3]);
+    foreach ($_call[0] AS &$c)
+    {
+      $c = substr($c,1,strlen($c));
+    }
 }
 
 function assetic_image()
