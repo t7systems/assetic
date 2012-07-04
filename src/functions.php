@@ -26,6 +26,29 @@ function assetic_init(AssetFactory $factory)
 }
 
 /**
+ * Returns an array of javascript URLs or 
+ * @param bool $debug If debug is true, this function will return a set of html script elements with all js files inside as src.
+ * @param array $inputs Input strings
+ * @param array $filters Filter names
+ * @param array $options An array of options
+ * @return array | string 
+ * @author David
+ */
+function auto_assetic_javascripts($debug = false, $inputs = array(), $filters = array(), array $options = array())
+{
+  if (!$debug)
+  {
+    return assetic_javascripts($inputs, $filters, $options);
+  }
+  $s = '';
+  foreach ($inputs as $input)
+  {
+    $s .= "<script src=\"".$input."\"></script>\n";
+  }
+  return $s;
+}
+
+/**
  * Returns an array of javascript URLs.
  *
  * @param array|string $inputs  Input strings
@@ -41,6 +64,30 @@ function assetic_javascripts($inputs = array(), $filters = array(), array $optio
     }
 
     return _assetic_urls($inputs, $filters, $options);
+}
+
+
+/**
+ * Returns an array of stylesheet URLs or 
+ * @param bool $debug If debug is true, this function will return a set of html link elements with all javascripts inside.
+ * @param array $inputs Input strings
+ * @param array $filters Filter names
+ * @param array $options An array of options
+ * @return array | string 
+ * @author David
+ */
+function auto_assetic_stylesheets($debug = false, $inputs = array(), $filters = array(), array $options = array())
+{
+  if (!$debug)
+  {
+    return assetic_javascripts($inputs, $filters, $options);
+  }
+  $s = '';
+  foreach ($inputs as $input)
+  {
+    $s .= "<link rel=\"stylesheet\" href=\"".$input."\" />\n";
+  }
+  return $s;
 }
 
 /**
