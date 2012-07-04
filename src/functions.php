@@ -38,7 +38,7 @@ function auto_assetic_javascripts($debug = false, $inputs = array(), $filters = 
 {
   if (!$debug)
   {
-    return assetic_javascripts($inputs, $filters, $options);
+    return "<script src=\"".assetic_javascripts($inputs, $filters, $options)."\"></script>\n";
   }
   $s = '';
   if (is_array($inputs))
@@ -83,7 +83,7 @@ function auto_assetic_stylesheets($debug = false, $inputs = array(), $filters = 
 {
   if (!$debug)
   {
-    return assetic_javascripts($inputs, $filters, $options);
+    return "<link rel=\"stylesheet\" href=\"".assetic_javascripts($inputs, $filters, $options)."\" />\n";
   }
   $s = '';
   if (is_array($inputs))
