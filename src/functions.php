@@ -41,9 +41,12 @@ function auto_assetic_javascripts($debug = false, $inputs = array(), $filters = 
     return assetic_javascripts($inputs, $filters, $options);
   }
   $s = '';
-  foreach ($inputs as $input)
+  if (is_array($inputs))
   {
-    $s .= "<script src=\"".$input."\"></script>\n";
+    foreach ($inputs as $input)
+    {
+      $s .= "<script src=\"".$input."\"></script>\n";
+    }
   }
   return $s;
 }
@@ -83,9 +86,12 @@ function auto_assetic_stylesheets($debug = false, $inputs = array(), $filters = 
     return assetic_javascripts($inputs, $filters, $options);
   }
   $s = '';
-  foreach ($inputs as $input)
+  if (is_array($inputs))
   {
-    $s .= "<link rel=\"stylesheet\" href=\"".$input."\" />\n";
+    foreach ($inputs as $input)
+    {
+      $s .= "<link rel=\"stylesheet\" href=\"".$input."\" />\n";
+    }
   }
   return $s;
 }
